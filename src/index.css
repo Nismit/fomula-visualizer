@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.App {
+  width: 1000px;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
+#webgl {
+  /* width: 100%;
+  height: 500px; */
+  width: 512px;
+  height: 512px;
+  border: 1px solid #ddd;
+}

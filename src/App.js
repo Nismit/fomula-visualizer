@@ -1,26 +1,89 @@
 import React from 'react';
-import logo from './logo.svg';
+import NISGL from './gl';
+import Vertex from './vertex';
+import Fragment from './fragment';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const glPosition = new Float32Array(
+  [
+    -1.0, 1.0, 0.0,
+    1.0, 1.0, 0.0,
+    -1.0, -1.0, 0.0,
+    1.0, -1.0, 0.0
+  ]
+);
+const glIndex = new Int16Array(
+  [
+    0, 2, 1,
+    1, 2, 3
+  ]
+);
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.canvas = React.createRef();
+    this.nisgl = null;
+    this.uniform = [];
+    this.shaders = [];
+    this.time = 0;
+    this.startTime = 0;
+
+    this.draw = this.draw.bind(this);
+  }
+
+
+  componentDidMount() {
+    const gl = this.canvas.current.getContext('webgl');
+    this.nisgl = new NISGL(gl);
+
+    this.shaders.push(this.nisgl.createShader(gl.VERTEX_SHADER, Vertex));
+    this.shaders.push(this.nisgl.createShader(gl.FRAGMENT_SHADER, Fragment));
+
+    const program = this.nisgl.createProgram(this.shaders);
+
+    this.uniform.push(gl.getUniformLocation(program, 'time'));
+    this.uniform.push(gl.getUniformLocation(program, 'resolution'));
+
+    const vertexPosition = this.nisgl.createBuffer(gl.ARRAY_BUFFER, glPosition);
+    const vertexIndex = this.nisgl.createBuffer(gl.ELEMENT_ARRAY_BUFFER, glIndex);
+    const vertexAttrLocation = gl.getAttribLocation(program, 'position');
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosition);
+    gl.enableVertexAttribArray(vertexAttrLocation);
+    gl.vertexAttribPointer(vertexAttrLocation, 3, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vertexIndex);
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    this.startTime = new Date().getTime();
+    this.draw();
+  }
+
+  draw() {
+    const element = this.canvas.current;
+    const height = element.clientHeight;
+    const width = element.clientWidth;
+    const gl = this.nisgl.getGLContext();
+
+    this.time = (new Date().getTime() - this.startTime) * 0.001;
+
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    gl.uniform1f(this.uniform[0], this.time);
+    gl.uniform2fv(this.uniform[1], [width, height]);
+
+    gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+    gl.flush();
+
+    requestAnimationFrame(this.draw);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <canvas id="webgl" ref={this.canvas} width="512" height="512"></canvas>
+      </div>
+    );
+  }
 }
 
 export default App;
