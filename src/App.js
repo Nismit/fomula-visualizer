@@ -30,6 +30,7 @@ class App extends React.Component {
     this.time = 0;
     this.startTime = 0;
 
+    this.resize = this.resize.bind(this);
     this.draw = this.draw.bind(this);
   }
 
@@ -55,7 +56,16 @@ class App extends React.Component {
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vertexIndex);
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     this.startTime = new Date().getTime();
+    this.resize();
     this.draw();
+  }
+
+  resize() {
+    const displayWidth = this.canvas.current.clientWidth;
+    const displayHeight = this.canvas.current.clientHeight;
+
+    this.canvas.current.width = displayWidth;
+    this.canvas.current.height = displayHeight;
   }
 
   draw() {
@@ -67,6 +77,7 @@ class App extends React.Component {
     this.time = (new Date().getTime() - this.startTime) * 0.001;
 
     gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.viewport(0, 0, width, height);
 
     gl.uniform1f(this.uniform[0], this.time);
     gl.uniform2fv(this.uniform[1], [width, height]);
@@ -80,7 +91,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <canvas id="webgl" ref={this.canvas} width="512" height="512"></canvas>
+        <canvas id="webgl" ref={this.canvas}></canvas>
       </div>
     );
   }
