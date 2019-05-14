@@ -1,37 +1,44 @@
 const Fragment = `
 precision mediump float;
+const float PI = 3.1415926;
+const vec2 offset = vec2(0.5);
 uniform float time;
-// uniform vec2  mouse;
 uniform vec2  resolution;
 
-// void main() {
-// 	vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / min(resolution.x, resolution.y);
-// 	// vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / resolution.xy;
-// 	vec2 color = (vec2(1.0) + p.xy) * 0.5;
-// 	gl_FragColor = vec4(color, 0.0, 1.0);
-// }
-
-const float PI = 3.1415926;
-
 vec3 hsv(float h, float s, float v){
-    vec4 t = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-    vec3 p = abs(fract(vec3(h) + t.xyz) * 6.0 - vec3(t.w));
-    return v * mix(vec3(t.x), clamp(p - vec3(t.x), 0.0, 1.0), s);
+	vec4 t = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+	vec3 p = abs(fract(vec3(h) + t.xyz) * 6.0 - vec3(t.w));
+	return v * mix(vec3(t.x), clamp(p - vec3(t.x), 0.0, 1.0), s);
 }
 
-void main(){
-    vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / resolution;
-    vec3 line = vec3(0.0);
-    for(float fi = 0.0; fi < 50.0; ++fi){
-        float offset = fi * PI / 100.0;
-        float value = 1.0 + sin(time * fi * 0.15 + 0.1) * 0.5;
-        float timer = time * fi * 0.01;
-        vec3  color = hsv((fi + time) * 0.0175, 1.0, value);
-        line += 0.0025 / abs(p.y + sin(p.x * 1.0 + timer + offset) * 0.75) * color;
-    }
-    gl_FragColor = vec4(line, 1.0);
+// Ref: http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl
+vec3 hsv2rgb(vec3 c) {
+	vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
 }
 
-`;
+// Ref: https://thebookofshaders.com/05/
+float plot(vec2 st, float pct){
+  return  smoothstep( pct-0.02, pct, st.y) -
+          smoothstep( pct, pct+0.02, st.y);
+}
+
+void main() {
+	vec2 uv = (gl_FragCoord.xy / resolution.xy) - offset;
+	uv *= 2.5;
+
+	vec3 color = vec3(0.0);
+	vec3 white = vec3(1.0);
+
+	// Function
+	float y = sin(uv.x * PI + time);
+
+	// Plot
+	float line = plot(uv, y);
+	color = (1.0 - line) * color + line * white;
+
+	gl_FragColor = vec4(color, 1.0);
+}`;
 
 export default Fragment
