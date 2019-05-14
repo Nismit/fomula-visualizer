@@ -23,6 +23,11 @@ const glIndex = new Int16Array(
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      fomula: ''
+    }
+
     this.canvas = React.createRef();
     this.nisgl = null;
     this.uniform = [];
@@ -30,10 +35,20 @@ class App extends React.Component {
     this.time = 0;
     this.startTime = 0;
 
+    this.handleChangeText = this.handleChangeText.bind(this);
     this.resize = this.resize.bind(this);
     this.draw = this.draw.bind(this);
   }
 
+  // Ref: https://stackoverflow.com/questions/49500255/warning-this-synthetic-event-is-reused-for-performance-reasons-happening-with
+  handleChangeText(e) {
+    e.persist();
+    this.setState(prevState => ({
+      fomula: e.target.value
+    }), () => {
+      console.log(this.state.fomula);
+    });
+  }
 
   componentDidMount() {
     const gl = this.canvas.current.getContext('webgl');
@@ -92,6 +107,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <canvas id="webgl" ref={this.canvas}></canvas>
+
+        <div className="params">
+          <input type="text" name="fomula" placeholder="y = sin(x);" onChange={this.handleChangeText} value={this.state.fomula} />
+        </div>
       </div>
     );
   }
