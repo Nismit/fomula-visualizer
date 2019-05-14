@@ -24,6 +24,12 @@ float plot(vec2 st, float pct){
           smoothstep( pct, pct+0.02, st.y);
 }
 
+float function(in float x) {
+	float y = 0.;
+
+	return y;
+}
+
 void main() {
 	vec2 uv = (gl_FragCoord.xy / resolution.xy) - offset;
 	uv *= 2.5;
@@ -35,7 +41,7 @@ void main() {
 	float y = sin(uv.x * PI + time);
 
 	// Plot
-	float line = plot(uv, y);
+	float line = plot(uv, function(uv.x));
 	color = (1.0 - line) * color + line * white;
 
 	gl_FragColor = vec4(color, 1.0);
