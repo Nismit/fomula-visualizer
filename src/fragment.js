@@ -1,4 +1,4 @@
-const Fragment = (fomula) => {
+export default function (fomula) {
 	return `
 precision mediump float;
 const float PI = 3.1415926;
@@ -48,5 +48,3 @@ void main() {
 	gl_FragColor = vec4(color, 1.0);
 }`
 };
-
-export default Fragment
