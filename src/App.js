@@ -55,7 +55,7 @@ class App extends React.Component {
     this.nisgl = new NISGL(gl);
 
     this.shaders.push(this.nisgl.createShader(gl.VERTEX_SHADER, Vertex));
-    this.shaders.push(this.nisgl.createShader(gl.FRAGMENT_SHADER, Fragment));
+    this.shaders.push(this.nisgl.createShader(gl.FRAGMENT_SHADER, Fragment('')));
 
     const program = this.nisgl.createProgram(this.shaders);
 

@@ -1,4 +1,5 @@
-const Fragment = `
+const Fragment = (fomula) => {
+	return `
 precision mediump float;
 const float PI = 3.1415926;
 const vec2 offset = vec2(0.5);
@@ -26,7 +27,7 @@ float plot(vec2 st, float pct){
 
 float function(in float x) {
 	float y = 0.;
-
+	${fomula}
 	return y;
 }
 
@@ -45,6 +46,7 @@ void main() {
 	color = (1.0 - line) * color + line * white;
 
 	gl_FragColor = vec4(color, 1.0);
-}`;
+}`
+};
 
 export default Fragment
