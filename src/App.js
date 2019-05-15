@@ -30,6 +30,7 @@ class App extends React.Component {
 
     this.canvas = React.createRef();
     this.nisgl = null;
+    this.program = null;
     this.uniform = [];
     this.shaders = [];
     this.time = 0;
@@ -46,7 +47,38 @@ class App extends React.Component {
     this.setState(prevState => ({
       fomula: e.target.value
     }), () => {
-      console.log(this.state.fomula);
+
+      const gl = this.nisgl.getGLContext();
+
+      const tempVertex = this.nisgl.createShader(gl.VERTEX_SHADER, Vertex);
+      const tempFragment = this.nisgl.createShader(gl.FRAGMENT_SHADER, Fragment(this.state.fomula));
+
+      if (tempVertex && tempFragment) {
+        this.shaders.forEach(shader => {
+          gl.detachShader(this.program, shader);
+        });
+
+        this.shaders = [];
+        this.shaders.push(tempVertex);
+        this.shaders.push(tempFragment);
+
+        this.program = this.nisgl.createProgram(this.shaders);
+
+        this.uniform = [];
+        this.uniform.push(gl.getUniformLocation(this.program, 'time'));
+        this.uniform.push(gl.getUniformLocation(this.program, 'resolution'));
+
+        const vertexPosition = this.nisgl.createBuffer(gl.ARRAY_BUFFER, glPosition);
+        const vertexIndex = this.nisgl.createBuffer(gl.ELEMENT_ARRAY_BUFFER, glIndex);
+        const vertexAttrLocation = gl.getAttribLocation(this.program, 'position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosition);
+        gl.enableVertexAttribArray(vertexAttrLocation);
+        gl.vertexAttribPointer(vertexAttrLocation, 3, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vertexIndex);
+        // console.log(gl.getParameter(gl.ARRAY_BUFFER_BINDING));
+        // console.log(gl.getParameter(gl.ELEMENT_ARRAY_BUFFER_BINDING));
+      }
+
     });
   }
 
@@ -57,14 +89,14 @@ class App extends React.Component {
     this.shaders.push(this.nisgl.createShader(gl.VERTEX_SHADER, Vertex));
     this.shaders.push(this.nisgl.createShader(gl.FRAGMENT_SHADER, Fragment('')));
 
-    const program = this.nisgl.createProgram(this.shaders);
+    this.program = this.nisgl.createProgram(this.shaders);
 
-    this.uniform.push(gl.getUniformLocation(program, 'time'));
-    this.uniform.push(gl.getUniformLocation(program, 'resolution'));
+    this.uniform.push(gl.getUniformLocation(this.program, 'time'));
+    this.uniform.push(gl.getUniformLocation(this.program, 'resolution'));
 
     const vertexPosition = this.nisgl.createBuffer(gl.ARRAY_BUFFER, glPosition);
     const vertexIndex = this.nisgl.createBuffer(gl.ELEMENT_ARRAY_BUFFER, glIndex);
-    const vertexAttrLocation = gl.getAttribLocation(program, 'position');
+    const vertexAttrLocation = gl.getAttribLocation(this.program, 'position');
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosition);
     gl.enableVertexAttribArray(vertexAttrLocation);
     gl.vertexAttribPointer(vertexAttrLocation, 3, gl.FLOAT, false, 0, 0);
