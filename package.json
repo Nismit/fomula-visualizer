@@ -1,7 +1,7 @@
 {
   "name": "fomula-visualizer",
   "version": "1.0.0",
-  "homepage": "http://nismit.github.io/fomula-visualizer",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
