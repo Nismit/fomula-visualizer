@@ -11,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 code {
@@ -35,8 +35,22 @@ code {
   padding-top: 2rem;
 }
 
-.params input {
+.params textarea {
   width: 100%;
   padding: .7rem 1rem;
   border: 1px solid rgb(107, 107, 107);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+}
+
+.assignedParams {
+  text-align: left;
+  background-color: #ddd;
+  padding: 1rem;
+  margin: 2rem 0;
+}
+
+footer {
+  padding-bottom: 1.5rem;
+  font-size: 14px;
 }
