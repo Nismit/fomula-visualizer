@@ -141,8 +141,26 @@ class App extends React.Component {
         <canvas id="webgl" ref={this.canvas}></canvas>
 
         <div className="params">
-          <input type="text" name="fomula" placeholder="y = sin(x);" onChange={this.handleChangeText} value={this.state.fomula} />
+          <textarea rows="4" cols="50" name="fomula" placeholder="y = sin(x);" onChange={this.handleChangeText} value={this.state.fomula} />
         </div>
+
+        <div className="assignedParams">
+          <p>
+            Assigned Parameters:<br />
+            float time - Count up the elapsed time (0.000)<br />
+            float PI - (3.1415926);<br />
+            vec2 uv - By default, it has been multiplied by 2.5<br />
+            <br />
+            Functions:<br />
+            <a href="#">float snoise(vec2 v)</a><br />
+            <a href="#">float cnoise(vec2 P)</a><br />
+            <a href="#">float pnoise(vec2 P, vec2 rep)</a><br />
+          </p>
+        </div>
+
+        <footer>
+          &copy; Fomula Visualizer | Made by <a href="https://github.com/Nismit" target="_blank" rel="noopener noreferrer">Nismit</a>
+        </footer>
       </div>
     );
   }
