@@ -19,7 +19,6 @@ class NISGL {
     if (gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
       return shader;
     } else {
-      console.error(gl.getShaderInfoLog(shader));
       return null;
     }
   }
