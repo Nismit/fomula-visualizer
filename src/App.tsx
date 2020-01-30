@@ -46,7 +46,7 @@ export default class App extends React.Component<Props, State> {
     const vertexShader = this.nisgl.createShader(this.nisgl.context.VERTEX_SHADER);
     vertexShader?.compile(Vertex);
     const fragmentShader = this.nisgl.createShader(this.nisgl.context.FRAGMENT_SHADER);
-    fragmentShader?.compile(Fragment('y = sin(x + time);'));
+    fragmentShader?.compile(Fragment(''));
 
     this.program = this.nisgl.createProgram();
 
