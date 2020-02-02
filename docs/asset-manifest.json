@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d08d78a.chunk.css",
-    "main.js": "/static/js/main.7245339f.chunk.js",
-    "main.js.map": "/static/js/main.7245339f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d3b9f404.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d3b9f404.js.map",
-    "static/js/2.721d0deb.chunk.js": "/static/js/2.721d0deb.chunk.js",
-    "static/js/2.721d0deb.chunk.js.map": "/static/js/2.721d0deb.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.ebd47ef7b97a6793dbaadde6c1efd26a.js": "/precache-manifest.ebd47ef7b97a6793dbaadde6c1efd26a.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.6d08d78a.chunk.css.map": "/static/css/main.6d08d78a.chunk.css.map",
-    "static/js/2.721d0deb.chunk.js.LICENSE": "/static/js/2.721d0deb.chunk.js.LICENSE",
-    "static/media/index.css": "/static/media/x16y32pxgridgazer-webfont.20769bf8.woff"
+    "main.css": "/fomula-visualizer/static/css/main.0c15d52c.chunk.css",
+    "main.js": "/fomula-visualizer/static/js/main.40a16801.chunk.js",
+    "main.js.map": "/fomula-visualizer/static/js/main.40a16801.chunk.js.map",
+    "runtime-main.js": "/fomula-visualizer/static/js/runtime-main.99625df1.js",
+    "runtime-main.js.map": "/fomula-visualizer/static/js/runtime-main.99625df1.js.map",
+    "static/js/2.721d0deb.chunk.js": "/fomula-visualizer/static/js/2.721d0deb.chunk.js",
+    "static/js/2.721d0deb.chunk.js.map": "/fomula-visualizer/static/js/2.721d0deb.chunk.js.map",
+    "index.html": "/fomula-visualizer/index.html",
+    "precache-manifest.2bb3cddac93e1736b7a2e6c02d4549bd.js": "/fomula-visualizer/precache-manifest.2bb3cddac93e1736b7a2e6c02d4549bd.js",
+    "service-worker.js": "/fomula-visualizer/service-worker.js",
+    "static/css/main.0c15d52c.chunk.css.map": "/fomula-visualizer/static/css/main.0c15d52c.chunk.css.map",
+    "static/js/2.721d0deb.chunk.js.LICENSE": "/fomula-visualizer/static/js/2.721d0deb.chunk.js.LICENSE",
+    "static/media/index.css": "/fomula-visualizer/static/media/x16y32pxgridgazer-webfont.20769bf8.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.d3b9f404.js",
+    "static/js/runtime-main.99625df1.js",
     "static/js/2.721d0deb.chunk.js",
-    "static/css/main.6d08d78a.chunk.css",
-    "static/js/main.7245339f.chunk.js"
+    "static/css/main.0c15d52c.chunk.css",
+    "static/js/main.40a16801.chunk.js"
   ]
 }
