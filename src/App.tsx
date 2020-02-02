@@ -1,5 +1,5 @@
 import React from 'react';
-import { NISGL, NISGLProgram } from 'nisgl-ts';
+import { NISGL, NISGLProgram, NISGLShader } from 'nisgl-ts';
 import Vertex from './vertex';
 import Fragment from './fragment';
 
@@ -12,6 +12,8 @@ export default class App extends React.Component<Props, State> {
   private canvasRef = React.createRef<HTMLCanvasElement>();
   private nisgl?: NISGL;
   private program?: NISGLProgram | null;
+  private vartexShader?: NISGLShader | null;
+  private fragmentShader?: NISGLShader | null;
   private startTime: number = 0;
   private time: number = 0;
 
@@ -43,23 +45,23 @@ export default class App extends React.Component<Props, State> {
 
     this.nisgl = new NISGL(gl);
     this.nisgl.clear();
-    const vertexShader = this.nisgl.createShader(this.nisgl.context.VERTEX_SHADER);
-    vertexShader?.compile(Vertex);
-    const fragmentShader = this.nisgl.createShader(this.nisgl.context.FRAGMENT_SHADER);
-    fragmentShader?.compile(Fragment(''));
+    this.vartexShader = this.nisgl.createShader(this.nisgl.context.VERTEX_SHADER)!;
+    this.vartexShader.compile(Vertex);
+    this.fragmentShader = this.nisgl.createShader(this.nisgl.context.FRAGMENT_SHADER)!;
+    this.fragmentShader.compile(Fragment(''));
 
     this.program = this.nisgl.createProgram();
 
-    if(vertexShader === null || fragmentShader === null || this.program === null) {
+    if(this.vartexShader === null || this.fragmentShader === null || this.program === null) {
       return;
     }
 
-    this.program.linkProgram([vertexShader, fragmentShader]);
+    this.program.linkProgram([this.vartexShader, this.fragmentShader]);
     this.nisgl.useProgram(this.program);
 
-    const positionBuffer = this.nisgl.createBuffer();
-    const indexBuffer = this.nisgl.createBuffer();
-    positionBuffer?.createVertexPosition(
+    const positionBuffer = this.nisgl.createBuffer()!;
+    const indexBuffer = this.nisgl.createBuffer()!;
+    positionBuffer.createVertexPosition(
       new Float32Array([
         -1.0, 1.0, 0.0,
         1.0, 1.0, 0.0,
@@ -68,7 +70,7 @@ export default class App extends React.Component<Props, State> {
       ])
     );
 
-    indexBuffer?.createVertexIndex(
+    indexBuffer.createVertexIndex(
       new Int16Array(
         [
           0, 2, 1,
@@ -81,7 +83,7 @@ export default class App extends React.Component<Props, State> {
       return;
     }
 
-    this.program?.setAttribute('position', 3, positionBuffer);
+    this.program.setAttribute('position', 3, positionBuffer);
     indexBuffer.bindBuffer('index');
 
     this.startTime = new Date().getTime();
@@ -90,56 +92,35 @@ export default class App extends React.Component<Props, State> {
 
   // Ref: https://stackoverflow.com/questions/49500255/warning-this-synthetic-event-is-reused-for-performance-reasons-happening-with
   handleChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const value = e.target.value;
-    console.log(value);
+    e.persist();
+    this.setState(prevState => ({
+      fomula: e.target.value
+    }), () => {
+      try {
+        const gl = this.nisgl?.context;
+        const tempFragment = this.nisgl?.createShader(gl!.FRAGMENT_SHADER);
+        tempFragment?.compile(Fragment(this.state.fomula));
 
-    // e.persist();
-    // this.setState(prevState => ({
-    //   fomula: e.target.value
-    // }), () => {
-
-    //   const gl = this.nisgl.getGLContext();
-
-    //   const tempVertex = this.nisgl.createShader(gl.VERTEX_SHADER, Vertex);
-    //   const tempFragment = this.nisgl.createShader(gl.FRAGMENT_SHADER, Fragment(this.state.fomula));
-
-    //   if (tempVertex && tempFragment) {
-    //     this.shaders.forEach(shader => {
-    //       gl.detachShader(this.program, shader);
-    //     });
-
-    //     this.shaders = [];
-    //     this.shaders.push(tempVertex);
-    //     this.shaders.push(tempFragment);
-
-    //     this.program = this.nisgl.createProgram(this.shaders);
-
-    //     this.uniform = [];
-    //     this.uniform.push(gl.getUniformLocation(this.program, 'time'));
-    //     this.uniform.push(gl.getUniformLocation(this.program, 'resolution'));
-
-    //     const vertexPosition = this.nisgl.createBuffer(gl.ARRAY_BUFFER, glPosition);
-    //     const vertexIndex = this.nisgl.createBuffer(gl.ELEMENT_ARRAY_BUFFER, glIndex);
-    //     const vertexAttrLocation = gl.getAttribLocation(this.program, 'position');
-    //     gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosition);
-    //     gl.enableVertexAttribArray(vertexAttrLocation);
-    //     gl.vertexAttribPointer(vertexAttrLocation, 3, gl.FLOAT, false, 0, 0);
-    //     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vertexIndex);
-    //     // console.log(gl.getParameter(gl.ARRAY_BUFFER_BINDING));
-    //     // console.log(gl.getParameter(gl.ELEMENT_ARRAY_BUFFER_BINDING));
-    //   }
-
-    // });
+        if(tempFragment?.isCompiled) {
+          gl!.detachShader(this.program!.getProgram, this.fragmentShader!.getShader());
+          this.fragmentShader = tempFragment;
+          this.program!.linkProgram([this.fragmentShader]);
+          this.nisgl!.useProgram(this.program!);
+        }
+      } catch(e) {
+        // console.log(e.message);
+      }
+    });
   }
 
   resize() {
-    // const displayWidth = this.canvasRef.current?.clientWidth;
-    // const displayHeight = this.canvasRef.current?.clientHeight;
+    const displayWidth = this.canvasRef.current!.clientWidth;
+    const displayHeight = this.canvasRef.current!.clientHeight;
 
-    // if(displayWidth !== null && displayHeight !== null) {
-    //   this.canvasRef.current.width = displayWidth;
-    //   this.canvasRef.current.height = displayHeight;
-    // }
+    if(displayWidth !== null && displayHeight !== null) {
+      this.canvasRef.current!.width = displayWidth;
+      this.canvasRef.current!.height = displayHeight;
+    }
   }
 
   draw() {
