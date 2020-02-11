@@ -8,7 +8,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.0",
-    "@types/node": "^12.12.25",
+    "@types/node": "^13.7.1",
     "@types/react": "^16.9.18",
     "@types/react-dom": "^16.9.5",
     "nisgl-ts": "^1.2.3",
