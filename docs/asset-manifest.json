@@ -1,23 +1,21 @@
 {
   "files": {
-    "main.css": "/fomula-visualizer/static/css/main.7d5f47b0.chunk.css",
-    "main.js": "/fomula-visualizer/static/js/main.93edd5d1.chunk.js",
-    "main.js.map": "/fomula-visualizer/static/js/main.93edd5d1.chunk.js.map",
-    "runtime-main.js": "/fomula-visualizer/static/js/runtime-main.296392e7.js",
-    "runtime-main.js.map": "/fomula-visualizer/static/js/runtime-main.296392e7.js.map",
-    "static/js/2.3c5787a8.chunk.js": "/fomula-visualizer/static/js/2.3c5787a8.chunk.js",
-    "static/js/2.3c5787a8.chunk.js.map": "/fomula-visualizer/static/js/2.3c5787a8.chunk.js.map",
+    "main.css": "/fomula-visualizer/static/css/main.fa687fed.chunk.css",
+    "main.js": "/fomula-visualizer/static/js/main.1d1982fe.chunk.js",
+    "main.js.map": "/fomula-visualizer/static/js/main.1d1982fe.chunk.js.map",
+    "runtime-main.js": "/fomula-visualizer/static/js/runtime-main.83f8fcd9.js",
+    "runtime-main.js.map": "/fomula-visualizer/static/js/runtime-main.83f8fcd9.js.map",
+    "static/js/2.e10f48da.chunk.js": "/fomula-visualizer/static/js/2.e10f48da.chunk.js",
+    "static/js/2.e10f48da.chunk.js.map": "/fomula-visualizer/static/js/2.e10f48da.chunk.js.map",
     "index.html": "/fomula-visualizer/index.html",
-    "precache-manifest.e006a75dce904dfdfbf0ac2d488fd8b7.js": "/fomula-visualizer/precache-manifest.e006a75dce904dfdfbf0ac2d488fd8b7.js",
-    "service-worker.js": "/fomula-visualizer/service-worker.js",
-    "static/css/main.7d5f47b0.chunk.css.map": "/fomula-visualizer/static/css/main.7d5f47b0.chunk.css.map",
-    "static/js/2.3c5787a8.chunk.js.LICENSE.txt": "/fomula-visualizer/static/js/2.3c5787a8.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/fomula-visualizer/static/media/x16y32pxgridgazer-webfont.20769bf8.woff"
+    "static/css/main.fa687fed.chunk.css.map": "/fomula-visualizer/static/css/main.fa687fed.chunk.css.map",
+    "static/js/2.e10f48da.chunk.js.LICENSE.txt": "/fomula-visualizer/static/js/2.e10f48da.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/fomula-visualizer/static/media/x16y32pxgridgazer-webfont.6e4ab1fd.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.296392e7.js",
-    "static/js/2.3c5787a8.chunk.js",
-    "static/css/main.7d5f47b0.chunk.css",
-    "static/js/main.93edd5d1.chunk.js"
+    "static/js/runtime-main.83f8fcd9.js",
+    "static/js/2.e10f48da.chunk.js",
+    "static/css/main.fa687fed.chunk.css",
+    "static/js/main.1d1982fe.chunk.js"
   ]
 }
