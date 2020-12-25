@@ -1,4 +1,4 @@
-export default function (fomula) {
+export default function fragment(fomula: string): string {
 	return `
 precision mediump float;
 const float PI = 3.1415926;
@@ -16,7 +16,7 @@ uniform vec2  resolution;
 //               Distributed under the MIT License. See LICENSE file.
 //               https://github.com/ashima/webgl-noise
 //               https://github.com/stegu/webgl-noise
-// 
+//
 
 vec3 mod289(vec3 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
@@ -132,10 +132,10 @@ float cnoise(vec2 P) {
   vec2 g11 = vec2(gx.w,gy.w);
 
   vec4 norm = taylorInvSqrt(vec4(dot(g00, g00), dot(g01, g01), dot(g10, g10), dot(g11, g11)));
-  g00 *= norm.x;  
-  g01 *= norm.y;  
-  g10 *= norm.z;  
-  g11 *= norm.w;  
+  g00 *= norm.x;
+  g01 *= norm.y;
+  g10 *= norm.z;
+  g11 *= norm.w;
 
   float n00 = dot(g00, vec2(fx.x, fy.x));
   float n10 = dot(g10, vec2(fx.y, fy.y));
@@ -172,10 +172,10 @@ float pnoise(vec2 P, vec2 rep) {
   vec2 g11 = vec2(gx.w,gy.w);
 
   vec4 norm = taylorInvSqrt(vec4(dot(g00, g00), dot(g01, g01), dot(g10, g10), dot(g11, g11)));
-  g00 *= norm.x;  
-  g01 *= norm.y;  
-  g10 *= norm.z;  
-  g11 *= norm.w;  
+  g00 *= norm.x;
+  g01 *= norm.y;
+  g10 *= norm.z;
+  g11 *= norm.w;
 
   float n00 = dot(g00, vec2(fx.x, fy.x));
   float n10 = dot(g10, vec2(fx.y, fy.y));
