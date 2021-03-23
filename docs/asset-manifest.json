@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/fomula-visualizer/static/css/main.fa687fed.chunk.css",
-    "main.js": "/fomula-visualizer/static/js/main.1d1982fe.chunk.js",
-    "main.js.map": "/fomula-visualizer/static/js/main.1d1982fe.chunk.js.map",
-    "runtime-main.js": "/fomula-visualizer/static/js/runtime-main.83f8fcd9.js",
-    "runtime-main.js.map": "/fomula-visualizer/static/js/runtime-main.83f8fcd9.js.map",
-    "static/js/2.e10f48da.chunk.js": "/fomula-visualizer/static/js/2.e10f48da.chunk.js",
-    "static/js/2.e10f48da.chunk.js.map": "/fomula-visualizer/static/js/2.e10f48da.chunk.js.map",
+    "main.js": "/fomula-visualizer/static/js/main.0059ae9d.chunk.js",
+    "main.js.map": "/fomula-visualizer/static/js/main.0059ae9d.chunk.js.map",
+    "runtime-main.js": "/fomula-visualizer/static/js/runtime-main.95453cb1.js",
+    "runtime-main.js.map": "/fomula-visualizer/static/js/runtime-main.95453cb1.js.map",
+    "static/js/2.f45b2ed1.chunk.js": "/fomula-visualizer/static/js/2.f45b2ed1.chunk.js",
+    "static/js/2.f45b2ed1.chunk.js.map": "/fomula-visualizer/static/js/2.f45b2ed1.chunk.js.map",
     "index.html": "/fomula-visualizer/index.html",
     "static/css/main.fa687fed.chunk.css.map": "/fomula-visualizer/static/css/main.fa687fed.chunk.css.map",
-    "static/js/2.e10f48da.chunk.js.LICENSE.txt": "/fomula-visualizer/static/js/2.e10f48da.chunk.js.LICENSE.txt",
+    "static/js/2.f45b2ed1.chunk.js.LICENSE.txt": "/fomula-visualizer/static/js/2.f45b2ed1.chunk.js.LICENSE.txt",
     "static/media/index.css": "/fomula-visualizer/static/media/x16y32pxgridgazer-webfont.6e4ab1fd.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.83f8fcd9.js",
-    "static/js/2.e10f48da.chunk.js",
+    "static/js/runtime-main.95453cb1.js",
+    "static/js/2.f45b2ed1.chunk.js",
     "static/css/main.fa687fed.chunk.css",
-    "static/js/main.1d1982fe.chunk.js"
+    "static/js/main.0059ae9d.chunk.js"
   ]
 }
