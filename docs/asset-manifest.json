@@ -5,16 +5,16 @@
     "main.js.map": "/fomula-visualizer/static/js/main.0059ae9d.chunk.js.map",
     "runtime-main.js": "/fomula-visualizer/static/js/runtime-main.95453cb1.js",
     "runtime-main.js.map": "/fomula-visualizer/static/js/runtime-main.95453cb1.js.map",
-    "static/js/2.f45b2ed1.chunk.js": "/fomula-visualizer/static/js/2.f45b2ed1.chunk.js",
-    "static/js/2.f45b2ed1.chunk.js.map": "/fomula-visualizer/static/js/2.f45b2ed1.chunk.js.map",
+    "static/js/2.a1dd18ae.chunk.js": "/fomula-visualizer/static/js/2.a1dd18ae.chunk.js",
+    "static/js/2.a1dd18ae.chunk.js.map": "/fomula-visualizer/static/js/2.a1dd18ae.chunk.js.map",
     "index.html": "/fomula-visualizer/index.html",
     "static/css/main.fa687fed.chunk.css.map": "/fomula-visualizer/static/css/main.fa687fed.chunk.css.map",
-    "static/js/2.f45b2ed1.chunk.js.LICENSE.txt": "/fomula-visualizer/static/js/2.f45b2ed1.chunk.js.LICENSE.txt",
+    "static/js/2.a1dd18ae.chunk.js.LICENSE.txt": "/fomula-visualizer/static/js/2.a1dd18ae.chunk.js.LICENSE.txt",
     "static/media/index.css": "/fomula-visualizer/static/media/x16y32pxgridgazer-webfont.6e4ab1fd.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.95453cb1.js",
-    "static/js/2.f45b2ed1.chunk.js",
+    "static/js/2.a1dd18ae.chunk.js",
     "static/css/main.fa687fed.chunk.css",
     "static/js/main.0059ae9d.chunk.js"
   ]
