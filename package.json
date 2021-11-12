@@ -4,7 +4,7 @@
   "homepage": "https://nismit.github.io/fomula-visualizer",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.23",
