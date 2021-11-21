@@ -1,21 +1,21 @@
 {
   "name": "fomula-visualizer",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "homepage": "https://nismit.github.io/fomula-visualizer",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.7",
-    "@types/react": "^17.0.34",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
     "nisgl-ts": "^1.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
