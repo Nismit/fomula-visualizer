@@ -1,8 +1,8 @@
 export default function fragment(fomula: string): string {
-	return `
+  return `
 precision mediump float;
 const float PI = 3.1415926;
-const vec2 offset = vec2(0.5);
+uniform float pixelRatio;
 uniform float time;
 uniform vec2  resolution;
 
@@ -203,8 +203,8 @@ vec3 hsv2rgb(vec3 c) {
 
 // Ref: https://thebookofshaders.com/05/
 float plot(vec2 st, float pct){
-  return  smoothstep( pct-0.02, pct, st.y) -
-          smoothstep( pct, pct+0.02, st.y);
+  return  smoothstep( pct - .008, pct, st.y) -
+          smoothstep( pct, pct + .008, st.y);
 }
 
 // Ref: https://thebookofshaders.com/10/
@@ -219,8 +219,7 @@ float function(in float x, in vec2 uv) {
 }
 
 void main() {
-	vec2 uv = (gl_FragCoord.xy / resolution.xy) - offset;
-	uv *= 2.5;
+	vec2 uv = (gl_FragCoord.xy / resolution.xy) * (2.0 / pixelRatio);
 
 	vec3 color = vec3(0.0);
 	vec3 white = vec3(1.0);
@@ -230,5 +229,5 @@ void main() {
 	color = (1.0 - line) * color + line * white;
 
 	gl_FragColor = vec4(color, 1.0);
-}`
-};
+}`;
+}
